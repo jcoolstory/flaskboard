@@ -1,0 +1,4 @@
+/flask/
+/project.sublime-workspace
+*.sublime-project
+*.pyc
