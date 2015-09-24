@@ -1,5 +1,5 @@
 #models.py
-
+from hashlib import md5
 from app import db
 
 class User(db.Model):
@@ -8,12 +8,15 @@ class User(db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+    def avatar(self,size):
+        return 'http://www.gavartar.com/avatar/%s?d=mm&s=%d' % \
+        (md5(self.email.encode('utf-8')).hexdigest(),size)
     @property
-    def is_authenticated(self):
+    def is_authenticddated(self):
         return True
 
     @property
-    def is_activate(self):
+    def is_active(self):
         return True
 
     @property
@@ -22,11 +25,11 @@ class User(db.Model):
 
     def get_id(self):
         try:
-            return unicode(self.id)
-        except Exception as e:
-            return str(self.id)
+            return unicode(self.id)  # python 2
+        except NameError:
+            return str(self.id)  # python 3
 
-    def __repr__ (self):
+    def __repr__(self):
         return '<User %r>' % (self.nickname)
 
 class Post(db.Model):
