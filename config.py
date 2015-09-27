@@ -7,6 +7,8 @@ SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir,'db_repository')
 
 WTF_CSRF_ENABLED = True
 SECRET_KEY = 'you-will-never-guess'
+POSTS_PER_PAGES = 3
+# WHOOSH_BASE = os.path.join(base,'search.db')
 
 OPENID_PROVIDERS = [
     {'name': 'Google', 'url': 'https://www.google.com/accounts/o8/id'},
@@ -15,3 +17,14 @@ OPENID_PROVIDERS = [
     {'name': 'Flickr', 'url': 'http://www.flickr.com/<username>'},
     {'name': 'MyOpenID', 'url': 'https://www.myopenid.com'}
     ]
+
+# email server
+MAIL_SERVER = 'smtp.googlemail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
+MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD')
+
+# administrator list
+ADMINS = ['your-gmail-username@gmail.com']
